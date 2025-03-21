@@ -37,15 +37,10 @@ end)
 AddEventHandler("OnClientKeyStateChange", function(event, playerid, key, pressed)
     if key == "tab" and pressed == true then
         if usermessage:IsValidMessage() then
-            print("calling")
             usermessage:SendToPlayer(playerid)
         end
     end
     return EventResult.Continue
-end)
-
-AddEventHandler("OnMapLoad", function (event)
-    usermessage = UserMessage("ServerRankRevealAll")
 end)
 
 AddEventHandler("OnPluginStart", function (event)
@@ -54,7 +49,8 @@ AddEventHandler("OnPluginStart", function (event)
         type = "matchmaking"
     })
 
-
+    usermessage = UserMessage("ServerRankRevealAll")
+    
     if config:Fetch("fakeranks.type") == "wingman" then
         rankType = 7
     elseif config:Fetch("fakeranks.type") == "premier" then
